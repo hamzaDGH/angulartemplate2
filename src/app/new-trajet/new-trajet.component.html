@@ -1,0 +1,80 @@
+<div class="panel-header panel-header-lg">
+  <img src="../../assets/img/test.jpg" style="height: 300px; width: 1400px;" />
+
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title"> Ajouter un trajet</h5>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+            <input type="text"  name="userId" [(ngModel)]="users" ngModel>
+            
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Départ   {{users}}<i class="now-ui-icons location_pin"></i></label>
+                  <input type="text" class="form-control" placeholder="Rabat" name="lieuDepart" ngModel required>
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label>Arrivée   <i class="now-ui-icons location_pin"></i></label>
+                  <input type="text" class="form-control" placeholder="Casablanca" name="lieuArrive" ngModel required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Date de départ  <i class="now-ui-icons ui-1_calendar-60"></i></label>
+                  <input type="datetime-local" class="form-control" name="dateDepart" ngModel required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Passagers   <i class="now-ui-icons users_single-02"></i></label>
+
+                  <select class="form-control" name ='passagers' [ngModel]="passager" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4 px-1">
+                <div class="form-group">
+                  <label>Valise   <i class="now-ui-icons business_briefcase-24"></i></label>
+
+                  <select class="form-control" name ='valise'[ngModel]="valise" required>
+                    <option value="sans">Sans</option>
+                    <option value="petite">Petite</option>
+                    <option value="moyenne">Moyenne</option>
+                    <option value="grande">Grande</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label>Prix   <i class="now-ui-icons business_money-coins"></i></label>
+                  <input type="number" class="form-control" placeholder="DH" name="prix" ngModel required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-right">
+                <button class="btn btn-success" type="submit" [disabled]="f.invalid">Ajouter</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

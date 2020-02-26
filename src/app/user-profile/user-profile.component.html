@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="panel-header panel-header-lg">
+  <img src="../../assets/img/test.jpg" style="height: 300px; width: 1400px;" />
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Editer Votre Profil </h5>
+        </div>
+        <div class="card-body">
+          <form #f="ngForm" (ngSubmit)="onUpdateUser(f.value)">
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Nom d'Utilisateur</label>
+                  <!--<input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">-->
+                  <input type="text" name="userName" class="form-control" placeholder="Nom d'Utilisateur"
+                    value="Creative Code Inc." ngModel [(ngModel)]="currentUser.userName">
+
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label for="email">Mot de Passe</label>
+                  <input name="password" id="password" type="password" class="form-control" placeholder="Password"
+                    ngModel [(ngModel)]="currentUser.password">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Nom</label>
+                  <input type="text" name="firstName" class="form-control" placeholder="Nom" value="Mike" ngModel
+                    [(ngModel)]="currentUser.firstName">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label>Prénom</label>
+                  <input type="text" name="lastName" class="form-control" placeholder="Prénom" value="Andrew" ngModel
+                    [(ngModel)]="currentUser.lastName">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1 ">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input name="email" id="email" type="email" class="form-control" placeholder="Email" ngModel
+                    [(ngModel)]="currentUser.email">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Adresse</label>
+                  <input type="text" name="address" class="form-control" placeholder="Adresse"
+                    value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" ngModel [(ngModel)]="currentUser.address">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Ville</label>
+                  <input type="text" name="city" class="form-control" placeholder="Ville" value="Mike" ngModel
+                    [(ngModel)]="currentUser.city">
+                </div>
+              </div>
+              <div class="col-md-6 px-1">
+                <div class="form-group">
+                  <label>Téléphone</label>
+                  <input type="text" name="tel" class="form-control" placeholder="Téléphone" value="Andrew" ngModel
+                    [(ngModel)]="currentUser.tel">
+                </div>
+              </div>
+            </div>
+            <ngb-rating max=5 name="score" [(rate)]="currentRate" ngModel [(ngModel)]="currentUser.score"></ngb-rating>
+            <hr>
+            <pre>Rate: <b>{{currentRate}}</b></pre>
+            <button type="submit" [disabled]="f.invalid" class="btn btn-primary btn-round">
+              <i class="now-ui-icons ui-2_settings-90"></i> Modifier
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-user">
+        <div class="image">
+          <img src="../assets/img/bg5.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <div class="author">
+            <a href="#">
+              <img class="avatar border-gray" src="../assets/img/mike.jpg" alt="...">
+              <h5 class="title"> {{currentUser.firstName}} {{currentUser.lastName}} </h5>
+            </a>
+            <p class="description">
+              {{currentUser.userName}}
+            </p>
+          </div>
+          <p class="description text-center">
+            {{currentUser.address}} {{currentUser.city}}
+            <br>Téléphone : {{currentUser.tel}}
+
+          </p>
+        </div>
+        <hr>
+        <div class="button-container">
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-twitter"></i>
+          </button>
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-google-plus-g"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

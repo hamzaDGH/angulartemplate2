@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-wrapper">
+      <div class="navbar-toggle">
+        <button type="button" class="navbar-toggler" (click)="sidebarToggle()">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div *ngIf="sessionAdmin">
+        <a class="navbar-brand"  [routerLink]="['/dashboard']">Dashboard</a>
+        <a class="navbar-brand" [routerLink]="['/reported']">Comptes Signalés </a>
+      </div>
+      <div *ngIf="sessionUser">
+        <a class="navbar-brand" [routerLink]="['/accueil']">Accueil</a>
+        <a class="navbar-brand" [routerLink]="['/trajets']">Mes Offres de Trajets </a>
+        <a class="navbar-brand" [routerLink]="['/liste-reservation']">Mes Reservations</a>
+        <a class="navbar-brand" [routerLink]="['/user-profile']">Mon Profile</a>
+      </div>
+      <div *ngIf="!sessionAdmin && !sessionUser">
+        <a class="navbar-brand">Bienvenue Aventurier</a>
+        <a class="navbar-brand" [routerLink]="['/login']">Connectez-vous</a>
+        <a class="navbar-brand" [routerLink]="['/register']">Proposer Services</a>
+      </div>
+      <!--<a class="navbar-brand" href="/user-profile">Profile Utilisateur</a>-->
+      <!-- <a class="navbar-brand" href="/liste-reservation">Liste reservations</a>-->
+    </div>
+    <button class="navbar-toggler" type="button" (click)="collapse()" [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample">
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+    </button>
+    <div *ngIf="sessionAdmin || sessionUser" class="collapse navbar-collapse justify-content-end" id="collapseExample"
+      [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav">
+        <li class="nav-item" ngbDropdown>
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
+            <i class="now-ui-icons users_single-02"></i>
+            <p>
+              <span *ngIf="sessionAdmin" class="d-lg-none d-md-block">Actions Administrateur</span>
+              <span *ngIf="sessionUser" class="d-lg-none d-md-block">Actions Utilisateur</span>
+            </p>
+          </a>
+          <div *ngIf="sessionAdmin" class="dropdown-menu dropdown-menu-right" ngbDropdownMenu
+            aria-labelledby="dropdownBasic1">
+            <a class="dropdown-item">Bienvenue {{sessionAdmin}}</a>
+            <a class="dropdown-item" [routerLink]="['/reported']">Listes de Comptes Signalés</a>
+            <a class="dropdown-item" href="/login">
+              <button class="btn btn-primary btn-fab btn-icon btn-round" (click)="onLogoutAdmin()">
+                <i class="now-ui-icons media-1_button-power"></i>
+              </button>
+            </a>
+          </div>
+          <div *ngIf="sessionUser" class="dropdown-menu dropdown-menu-right" ngbDropdownMenu
+            aria-labelledby="dropdownBasic1">
+            <a class="dropdown-item" *ngIf='testt'><i class="now-ui-icons business_bank"></i>Bienvenue {{sessionUser}}</a>
+            <a class="dropdown-item" [routerLink]="['/user-profile']" *ngIf='testt'><i class="now-ui-icons users_single-02"></i>Profile</a>
+            <a class="dropdown-item" [routerLink]="['/login']" *ngIf='testf'><i
+                class="now-ui-icons education_atom"></i>Connectez-vous</a>
+            <a class="dropdown-item" href="/login" *ngIf='testt'>
+              <button class="btn btn-primary btn-fab btn-icon btn-round" (click)="onLogout()">
+                <i class="now-ui-icons media-1_button-power"></i>
+              </button>
+            </a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/accueil']">
+            <i class="now-ui-icons location_world"></i>
+            <p>
+              <span class="d-lg-none d-md-block ">Voir l'accueil</span>
+            </p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,169 @@
+<div class="panel-header panel-header-lg">
+  <img src="../../assets/img/test.jpg" style="height: 300px; width: 1400px;" />
+  <canvas baseChart id="bigDashboardChart" [labels]="lineBigDashboardChartLabels" [colors]="lineBigDashboardChartColors"
+    [options]="lineBigDashboardChartOptions" [chartType]="lineBigDashboardChartType" (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"></canvas>
+</div>
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-category">Nombre de visite</h5>
+          <h4 class="card-title">Visite en 2019</h4>
+          <div ngbDropdown>
+            <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret"
+              ngbDropdownToggle>
+              <i class="now-ui-icons loader_gear"></i>
+            </button>
+            <div ngbDropdownMenu class="dropdown-menu-right">
+              <a class="dropdown-item" href="#">hahaha {{t}}</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item text-danger" href="#">Remove Data</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-area">
+            <canvas baseChart id="lineChartExample" [datasets]="lineChartData" [labels]="lineChartLabels"
+              [colors]="lineChartColors" [options]="lineChartOptions" [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-category">Statistiques 2019</h5>
+          <h4 class="card-title">Nombre de covoiturage 2019</h4>
+          <div ngbDropdown>
+            <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret"
+              ngbDropdownToggle>
+              <i class="now-ui-icons loader_gear"></i>
+            </button>
+            <div ngbDropdownMenu class="dropdown-menu-right">
+              <a class="dropdown-item" href="#">hahahah</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item text-danger" href="#">Remove Data</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-area">
+            <!-- <canvas id="lineChartExampleWithNumbersAndGrid"></canvas> -->
+            <canvas baseChart id="lineChartExampleWithNumbersAndGrid" [datasets]="lineChartWithNumbersAndGridData"
+              [labels]="lineChartWithNumbersAndGridLabels" [colors]="lineChartWithNumbersAndGridColors"
+              [options]="lineChartWithNumbersAndGridOptions" [chartType]="lineChartWithNumbersAndGridType"
+              (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-category">Nombres d'offre réservé</h5>
+          <h4 class="card-title">Performance durant les derniers 24 Heures</h4>
+        </div>
+        <div class="card-body">
+          <div class="chart-area">
+            <canvas baseChart id="barChartSimpleGradientsNumbers" [datasets]="lineChartGradientsNumbersData"
+              [labels]="lineChartGradientsNumbersLabels" [colors]="lineChartGradientsNumbersColors"
+              [options]="lineChartGradientsNumbersOptions" [chartType]="lineChartGradientsNumbersType"
+              (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="now-ui-icons ui-2_time-alarm"></i> Last 7 days
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Liste des Utilisateurs</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
+                <input class="form-control" name="keyword" placeholder="Recherche..." type="text" value="" ngModel>
+                <button type="submit" [disabled]="f.invalid" class="btn btn-info btn-round">
+                  <i class="now-ui-icons ui-1_zoom-bold"></i> Chercher
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table" *ngIf="users">
+              <thead class=" text-primary">
+                <th>
+                  Username
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  City
+                </th>
+                <th class="text-right">
+                  Action
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let u of users._embedded.users">
+                  <td>
+                    {{u.userName}}
+                  </td>
+                  <td>
+                    {{u.email}}
+                  </td>
+                  <td>
+                    {{u.city}}
+                  </td>
+                  <td class="text-right">
+                    <button type="button" rel="tooltip" title=""
+                      class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" (click)="onEditUser(u)"
+                      data-original-title="Edit Task">
+                      <i class="now-ui-icons ui-2_settings-90"></i>
+                    </button>
+                    <button type="button" rel="tooltip" title=""
+                      class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" (click)="onDeleteUser(u)"
+                      data-original-title="Remove">
+                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item" [ngClass]="i==currentPage?'active':''" *ngFor="let p of pages; let i = index"><a
+                    class="page-link" (click)="onPageUser(i)">{{i}}</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
